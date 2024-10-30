@@ -26,14 +26,7 @@ exports.userCreatePost = [
       membership_status,
     } = req.body;
 
-    console.log(
-      first_name,
-      last_name,
-      email,
-      password,
-      confirm_password,
-      membership_status
-    );
+    console.log(first_name, last_name, email, password, confirm_password);
 
     bcrypt.hash(password, 10, async (err, hashedPassword) => {
       if (err) {
@@ -60,5 +53,33 @@ exports.userCreatePost = [
         res.redirect("/");
       }
     });
+  }),
+];
+
+exports.userLogInGet = asyncHandler(async (req, res, next) => {
+  res.render("log-in");
+  // res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+});
+
+exports.userBecomeMemberGet = asyncHandler(async (req, res, next) => {
+  res.render("become-member");
+});
+
+exports.userBecomeMemberPost = [
+  asyncHandler(async (req, res, next) => {
+    const findLoggedUserById = await db.getUser(req.currentUser_id);
+
+    if (
+      findLoggedUserById &&
+      req.body.membersPassword !== process.env.membersPasscode
+    ) {
+      res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    } else {
+      const updateUserMembershipStatus = await db.postBecomeMember(
+        req.currentUser_id
+      );
+
+      res.redirect("/");
+    }
   }),
 ];

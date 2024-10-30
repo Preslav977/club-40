@@ -27,7 +27,9 @@ const validateUser = [
     .escape()
     .withMessage(`Email ${lengthErr}`),
   body("password")
+    .trim()
     .isLength({ min: 8 })
+    .escape()
     .withMessage(`Password ${passwordLengthErr}`),
   body("confirm_password")
     .custom((value, { req }) => {
