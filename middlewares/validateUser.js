@@ -1,8 +1,12 @@
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 
 const lengthErr = "must be between 1 and 30 characters.";
 
 const validErr = "must be valid email.";
+
+const passwordLengthErr = "must be at least 8 characters.";
+
+const passwordMatchErr = "must match.";
 
 const validateUser = [
   body("first_name")
@@ -22,10 +26,14 @@ const validateUser = [
     .isLength({ min: 1, max: 30 })
     .escape()
     .withMessage(`Email ${lengthErr}`),
-  body("password").isLength({ min: 8 }),
-  body("confirm_password").custom(
-    (value, { req }) => value === req.body.password
-  ),
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage(`Password ${passwordLengthErr}`),
+  body("confirm_password")
+    .custom((value, { req }) => {
+      return value === req.body.password;
+    })
+    .withMessage(`Password ${passwordMatchErr}`),
 ];
 
 module.exports = validateUser;
