@@ -58,7 +58,6 @@ exports.userCreatePost = [
 
 exports.userLogInGet = asyncHandler(async (req, res, next) => {
   res.render("log-in");
-  // res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 });
 
 exports.userBecomeMemberGet = asyncHandler(async (req, res, next) => {
@@ -67,7 +66,7 @@ exports.userBecomeMemberGet = asyncHandler(async (req, res, next) => {
 
 exports.userBecomeMemberPost = [
   asyncHandler(async (req, res, next) => {
-    const findLoggedUserById = await db.getUser(req.currentUser_id);
+    const findLoggedUserById = await db.getUser(req.user_id);
 
     if (
       findLoggedUserById &&
@@ -75,9 +74,7 @@ exports.userBecomeMemberPost = [
     ) {
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
-      const updateUserMembershipStatus = await db.postBecomeMember(
-        req.currentUser_id
-      );
+      const updateUserMembershipStatus = await db.postBecomeMember(req.user_id);
 
       res.redirect("/");
     }
