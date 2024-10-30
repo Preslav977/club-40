@@ -16,6 +16,10 @@ const bcrypt = require("bcryptjs");
 
 const indexRouter = require("./routes/indexRouter");
 
+const userRouter = require("./routes/userRouter");
+
+const messageRouter = require("./routes/messageRouter");
+
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
@@ -30,6 +34,10 @@ const assetsPath = path.join(__dirname + "/public");
 app.use(express.static(assetsPath));
 
 app.use("/", indexRouter);
+
+app.use("/user", userRouter);
+
+app.use("/message", messageRouter);
 
 const PORT = process.env.PORT || 3000;
 
