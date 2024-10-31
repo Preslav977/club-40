@@ -44,7 +44,7 @@ async function postCreateUser(
 async function postBecomeMember(membership_status, id) {
   try {
     const query = await pool.query(
-      "UPDATE users SET membership_status = $1 WHERE id = $2",
+      "UPDATE users SET membership_status = $1 WHERE id = $2 IN (SELECT user_id FROM messages WHERE id = user_id)",
       [membership_status, id]
     );
 
@@ -55,11 +55,11 @@ async function postBecomeMember(membership_status, id) {
   }
 }
 
-async function postBecomeAdmin(membership_status, id) {
+async function postBecomeAdmin(membership_status, id, user_id) {
   try {
     const query = await pool.query(
-      "UPDATE users SET membership_status = $1 WHERE id = $2",
-      [membership_status, id]
+      "UPDATE users SET membership_status = $1 WHERE id = $2 IN (SELECT user_id FROM messages WHERE id = user_id)",
+      [membership_status, id, user_id]
     );
 
     return query.rows[0];
