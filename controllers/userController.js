@@ -67,7 +67,9 @@ exports.userBecomeMemberGet = asyncHandler(async (req, res, next) => {
 exports.userBecomeMemberPost = [
   asyncHandler(async (req, res, next) => {
     const findLoggedUserById = await db.getUser(req.user.id);
+
     console.log(findLoggedUserById);
+
     console.log(req.user);
 
     if (
@@ -77,7 +79,36 @@ exports.userBecomeMemberPost = [
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
       const updateUserMembershipStatus = await db.postBecomeMember(req.user.id);
+
       console.log(updateUserMembershipStatus);
+
+      res.send(updateUserMembershipStatus);
+    }
+  }),
+];
+
+exports.userBecomeAdminGet = asyncHandler(async (req, res, next) => {
+  res.render("become-admin");
+});
+
+exports.userBecomeAdminPost = [
+  asyncHandler(async (req, res, next) => {
+    const findLoggedUserById = await db.getUser(req.user.id);
+
+    console.log(findLoggedUserById);
+
+    console.log(req.user);
+
+    if (
+      !findLoggedUserById &&
+      req.body.adminPassword !== process.env.adminsPasscode
+    ) {
+      res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    } else {
+      const updateUserMembershipStatus = await db.postBecomeMember(req.user.id);
+
+      console.log(updateUserMembershipStatus);
+
       res.send(updateUserMembershipStatus);
     }
   }),
