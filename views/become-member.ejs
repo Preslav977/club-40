@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Club 40</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <header class="flex-header-container">
+        <h2>Become member</h2>
+
+        <p>Enter the correct password to join</p>
+
+        <p>What is the most used meme in TOP?</p>
+
+        <p>On successful guess you will be redirected to main page!</p>
+      </header>
+
+      <form action="/user/become-member" method="POST">
+        <div class="form-content">
+          <label for="membersPasscode">Members Passcode</label>
+          <input type="password" name="membersPasscode" id="membersPasscode" />
+        </div>
+        <div class="form-btn-container">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
