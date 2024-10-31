@@ -70,19 +70,21 @@ exports.userBecomeMemberPost = [
 
     console.log(findLoggedUserById);
 
-    console.log(req.user);
-
     if (
-      !findLoggedUserById &&
+      !findLoggedUserById ||
       req.body.membersPassword !== process.env.membersPasscode
     ) {
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
-      const updateUserMembershipStatus = await db.postBecomeMember(req.user.id);
+      const updateUserMembershipStatus = await db.postBecomeMember(
+        "member",
+        req.user.id,
+        req.user.id
+      );
 
       console.log(updateUserMembershipStatus);
 
-      res.send(updateUserMembershipStatus);
+      res.redirect("/");
     }
   }),
 ];
@@ -97,19 +99,21 @@ exports.userBecomeAdminPost = [
 
     console.log(findLoggedUserById);
 
-    console.log(req.user);
-
     if (
-      !findLoggedUserById &&
+      !findLoggedUserById ||
       req.body.adminPassword !== process.env.adminsPasscode
     ) {
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
-      const updateUserMembershipStatus = await db.postBecomeMember(req.user.id);
+      const updateUserMembershipStatus = await db.postBecomeMember(
+        "admin",
+        req.user.id,
+        req.user.id
+      );
 
       console.log(updateUserMembershipStatus);
 
-      res.send(updateUserMembershipStatus);
+      res.redirect("/");
     }
   }),
 ];

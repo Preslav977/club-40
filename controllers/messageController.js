@@ -20,11 +20,14 @@ exports.newMessagePost = [
     if (!errors.isEmpty()) {
       return res.status(400).send(errors.array());
     } else {
-      const createMessage = await db.postMessageCreate(title, content, 6);
-
+      const createMessage = await db.postMessageCreate(
+        title,
+        content,
+        req.user.id
+      );
       console.log(createMessage);
 
-      res.send(createMessage);
+      // res.send(createMessage);
     }
   }),
 ];
