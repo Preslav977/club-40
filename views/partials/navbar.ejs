@@ -14,25 +14,29 @@
     <% if (locals.user) { %>
     <nav class="flex-container">
       <ul class="flex-content">
-        <img src="./svgs/message.svg" alt="create message" />
+        <img
+          class="navbar-image"
+          src="./svgs/message.svg"
+          alt="create message"
+        />
         <li>
           <a href="/message/new-message"> New message</a>
         </li>
       </ul>
       <ul class="flex-content">
-        <img src="./svgs/star.svg" alt="become member" />
+        <img class="navbar-image" src="./svgs/star.svg" alt="become member" />
         <li>
           <a href="/user/become-member">Become A Member</a>
         </li>
       </ul>
       <ul class="flex-content">
-        <img src="./svgs/padlock.svg" alt="become admin" />
+        <img class="navbar-image" src="./svgs/padlock.svg" alt="become admin" />
         <li>
-          <a href="/user/become-admin">Become A Admin</a>
+          <a href="/user/become-admin">Admin Mode</a>
         </li>
       </ul>
       <ul class="flex-content">
-        <img src="./svgs/log-out.svg" alt="log out" />
+        <img class="navbar-image" src="./svgs/log-out.svg" alt="log out" />
         <li>
           <a href="/user/log-out">Log Out</a>
         </li>

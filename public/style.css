@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+body {
+  background-color: lightblue;
+}
+
 .flex-header-container {
   text-align: center;
   margin: 1rem;
@@ -39,6 +43,21 @@ a {
   width: 30px;
 }
 
-body {
-  background-color: lightblue;
+.form-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.form-content input {
+  width: 300px;
 }

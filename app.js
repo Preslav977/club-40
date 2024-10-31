@@ -51,6 +51,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  console.log(req.user);
   next();
 });
 
@@ -72,7 +73,6 @@ passport.use(
         if (!user) {
           return done(null, false, { message: "Incorrect email" });
         }
-
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
           return done(null, false, { message: "Incorrect password" });
@@ -110,7 +110,7 @@ app.post(
   })
 );
 
-app.get("/log-out", (req, res, next) => {
+app.get("/user/log-out", (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);
