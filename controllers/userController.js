@@ -66,17 +66,19 @@ exports.userBecomeMemberGet = asyncHandler(async (req, res, next) => {
 
 exports.userBecomeMemberPost = [
   asyncHandler(async (req, res, next) => {
-    const findLoggedUserById = await db.getUser(req.user_id);
+    const findLoggedUserById = await db.getUser(req.user.id);
+    console.log(findLoggedUserById);
+    console.log(req.user);
 
     if (
-      findLoggedUserById &&
+      !findLoggedUserById &&
       req.body.membersPassword !== process.env.membersPasscode
     ) {
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
-      const updateUserMembershipStatus = await db.postBecomeMember(req.user_id);
-
-      res.redirect("/");
+      const updateUserMembershipStatus = await db.postBecomeMember(req.user.id);
+      console.log(updateUserMembershipStatus);
+      res.send(updateUserMembershipStatus);
     }
   }),
 ];

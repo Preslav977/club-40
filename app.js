@@ -27,7 +27,7 @@ const app = express({
     pool: pool,
     tableName: "sessions",
   }),
-  secret: pgSessionSecret,
+  secret: process.env.pgSessionSecret,
   resave: false,
   cookie: { maxAge: 1000 * 60 * 60 * 24 },
 });
@@ -49,26 +49,40 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
 
-passport.use(
-  new LocalStrategy(async (username, password, done) => {
-    try {
-      const { rows } = await pool.query(
-        "SELECT * FROM users WHERE username = $1",
-        [username]
-      );
-      const user = rows[0];
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+
+    async (email, password, done) => {
+      try {
+        const { rows } = await pool.query(
+          "SELECT * FROM users WHERE email = $1",
+          [email]
+        );
+        const user = rows[0];
+
+        if (!user) {
+          return done(null, false, { message: "Incorrect email" });
+        }
+
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          return done(null, false, { message: "Incorrect password" });
+        }
+        return done(null, user);
+      } catch (err) {
+        return done(err);
       }
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user);
-    } catch (err) {
-      return done(err);
     }
-  })
+  )
 );
 
 passport.serializeUser((user, done) => {
@@ -88,15 +102,10 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.use((req, res, next) => {
-  res.locals.currentUser = req.user;
-  next();
-});
-
 app.post(
-  "/log-in",
+  "/user/log-in",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/user/become-member",
     failureRedirect: "/",
   })
 );
