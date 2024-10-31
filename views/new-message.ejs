@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Club 40</title>
+  </head>
+  <body>
+    <header class="flex-header-container">
+      <h2>New message</h2>
+
+      <p>Hello, <%= user.first_name %></p>
+
+      <p>What is on your mind?</p>
+    </header>
+
+    <div class="form-container">
+      <form action="/new-message" method="POST">
+        <div class="form-content">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" />
+        </div>
+        <div class="form-content">
+          <label for="content">Content</label>
+          <textarea name="content" id="content"></textarea>
+        </div>
+        <div class="form-btn-container">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
