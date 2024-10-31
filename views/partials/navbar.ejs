@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Club 40</title>
+  </head>
+  <body>
+    <header class="flex-header-container">
+      <h1>Club<span>40</span></h1>
+    </header>
+
+    <% if (locals.user) { %>
+    <nav class="flex-container">
+      <ul class="flex-content">
+        <img src="./svgs/message.svg" alt="create message" />
+        <li>
+          <a href="/message/new-message"> New message</a>
+        </li>
+      </ul>
+      <ul class="flex-content">
+        <img src="./svgs/star.svg" alt="become member" />
+        <li>
+          <a href="/user/become-member">Become A Member</a>
+        </li>
+      </ul>
+      <ul class="flex-content">
+        <img src="./svgs/padlock.svg" alt="become admin" />
+        <li>
+          <a href="/user/become-admin">Become A Admin</a>
+        </li>
+      </ul>
+      <ul class="flex-content">
+        <img src="./svgs/log-out.svg" alt="log out" />
+        <li>
+          <a href="/user/log-out">Log Out</a>
+        </li>
+      </ul>
+    </nav>
+    <% } else { %>
+    <nav class="flex-container">
+      <ul class="flex-content">
+        <img class="navbar-image" src="./svgs/person.svg" alt="sign up" />
+        <li>
+          <a href="/user/sign-up">Sign Up</a>
+        </li>
+      </ul>
+      <ul class="flex-content">
+        <img class="navbar-image" src="./svgs/log-in.svg" alt="log in" />
+        <li>
+          <a href="/user/log-in">Log in</a>
+        </li>
+      </ul>
+    </nav>
+    <% } %>
+  </body>
+</html>
