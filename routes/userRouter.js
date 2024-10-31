@@ -12,10 +12,10 @@ userRouter.get("/log-in", userController.userLogInGet);
 
 userRouter.get("/become-member", userController.userBecomeMemberGet);
 
-// userRouter.post("/become-member", userController.userBecomeMemberPost);
+userRouter.post("/become-member", userController.userBecomeMemberPost);
 
-// userRouter.get("/become-admin", userController.userBecomeAdminGet);
+userRouter.get("/become-admin", userController.userBecomeAdminGet);
 
-// userRouter.post("/become-admin", userController.userBecomeAdminPost);
+userRouter.post("/become-admin", userController.userBecomeAdminPost);
 
 module.exports = userRouter;

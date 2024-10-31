@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Club 40</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <header class="flex-header-container">
+        <h2>Become admin</h2>
+
+        <p>Enter the correct password to join</p>
+
+        <p>This time there are no hints!</p>
+
+        <p>On successful guess you will be redirected to main page!</p>
+      </header>
+
+      <form action="/user/become-admin" method="POST">
+        <div class="form-content">
+          <label for="adminsPasscode">Admins Passcode</label>
+          <input type="password" name="adminsPasscode" id="adminsPasscode" />
+        </div>
+        <div class="form-btn-container">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
