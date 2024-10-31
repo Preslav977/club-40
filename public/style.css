@@ -65,3 +65,17 @@ body {
 .form-content input {
   width: 300px;
 }
+
+.message-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
