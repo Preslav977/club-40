@@ -25,9 +25,8 @@ exports.newMessagePost = [
         content,
         req.user.id
       );
-      console.log(createMessage);
 
-      // res.send(createMessage);
+      res.redirect("/");
     }
   }),
 ];
@@ -35,8 +34,6 @@ exports.newMessagePost = [
 exports.newMessageDeletePost = [
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-
-    console.log(id);
 
     const deleteMessage = await db.postMessageDelete(id);
 

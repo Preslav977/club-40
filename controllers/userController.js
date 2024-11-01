@@ -26,7 +26,7 @@ exports.userCreatePost = [
       membership_status,
     } = req.body;
 
-    console.log(first_name, last_name, email, password, confirm_password);
+    // console.log(first_name, last_name, email, password, confirm_password);
 
     bcrypt.hash(password, 10, async (err, hashedPassword) => {
       if (err) {
@@ -39,7 +39,7 @@ exports.userCreatePost = [
       if (!errors.isEmpty()) {
         return res.status(400).send(errors.array());
       } else {
-        const postUser = await db.postCreateUser(
+        const createUser = await db.postCreateUser(
           first_name,
           last_name,
           email,
@@ -48,7 +48,7 @@ exports.userCreatePost = [
           "non-member"
         );
 
-        console.log(postUser);
+        console.log(createUser);
 
         res.redirect("/");
       }
@@ -67,8 +67,6 @@ exports.userBecomeMemberGet = asyncHandler(async (req, res, next) => {
 exports.userBecomeMemberPost = [
   asyncHandler(async (req, res, next) => {
     const findLoggedUserById = await db.getUser(req.user.id);
-
-    console.log(findLoggedUserById);
 
     const { memberPassword } = req.body;
 
@@ -96,8 +94,6 @@ exports.userBecomeAdminPost = [
   asyncHandler(async (req, res, next) => {
     const findLoggedUserById = await db.getUser(req.user.id);
 
-    console.log(findLoggedUserById);
-
     const { adminPassword } = req.body;
 
     if (!findLoggedUserById || adminPassword !== process.env.adminPassword) {
@@ -105,6 +101,7 @@ exports.userBecomeAdminPost = [
     } else {
       const updateUserMembershipStatus = await db.postBecomeMember(
         "admin",
+        req.user.id,
         req.user.id
       );
 

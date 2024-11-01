@@ -43,13 +43,24 @@ async function postCreateUser(
 
 async function postBecomeMember(membership_status, id, user_id) {
   try {
-    const query = await pool.query(
-      "UPDATE users SET membership_status = $1 WHERE id IN (SELECT user_id FROM messages WHERE $2 = $3)",
-      // "UPDATE users SET membership_status = $1 WHERE id = $2",
-      [membership_status, id, user_id]
+    const { rows } = await pool.query(
+      "SELECT user_id FROM messages WHERE user_id IN (SELECT id FROM users WHERE id = user_id)"
     );
 
-    return query.rows[0];
+    if (rows[0]) {
+      const query = await pool.query(
+        "UPDATE users SET membership_status = $1 WHERE id IN (SELECT user_id FROM messages WHERE $2 = $3)",
+        [membership_status, id, user_id]
+      );
+
+      return query.rows[0];
+    } else {
+      const query = await pool.query(
+        "UPDATE users SET membership_status = $1 WHERE id = $2",
+        [membership_status, id]
+      );
+      return query.rows[0];
+    }
   } catch (err) {
     console.error("Error while user trying to become a member", err);
     throw err;
@@ -58,15 +69,26 @@ async function postBecomeMember(membership_status, id, user_id) {
 
 async function postBecomeAdmin(membership_status, id) {
   try {
-    const query = await pool.query(
-      // "UPDATE users SET membership_status = $1 WHERE id IN (SELECT user_id FROM messages WHERE $2 = user_id)",
-      "UPDATE users SET membership_status = $1 WHERE id = $2",
-      [membership_status, id]
+    const { rows } = await pool.query(
+      "SELECT user_id FROM messages WHERE user_id IN (SELECT id FROM users WHERE id = user_id)"
     );
 
-    return query.rows[0];
+    if (rows[0]) {
+      const query = await pool.query(
+        "UPDATE users SET membership_status = $1 WHERE id IN (SELECT user_id FROM messages WHERE $2 = $3)",
+        [membership_status, id, user_id]
+      );
+
+      return query.rows[0];
+    } else {
+      const query = await pool.query(
+        "UPDATE users SET membership_status = $1 WHERE id = $2",
+        [membership_status, id]
+      );
+      return query.rows[0];
+    }
   } catch (err) {
-    console.error("Error while user trying to become a admin", err);
+    console.error("Error while user trying to become a member", err);
     throw err;
   }
 }
