@@ -22,15 +22,7 @@ const userRouter = require("./routes/userRouter");
 
 const messageRouter = require("./routes/messageRouter");
 
-const app = express({
-  store: new pgSession({
-    pool: pool,
-    tableName: "sessions",
-  }),
-  secret: process.env.pgSessionSecret,
-  resave: false,
-  cookie: { maxAge: 1000 * 60 * 60 * 24 },
-});
+const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -39,9 +31,16 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: process.env.sessionSecret,
+    secret: process.env.pgSessionSecret,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+    store: new pgSession({
+      pool: pool,
+      tableName: "session",
+    }),
   })
 );
 
