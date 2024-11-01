@@ -27,20 +27,18 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(express.json());
-
 app.use(
   session({
-    secret: process.env.sessionSecret,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
     store: new pgSession({
       pool: pool,
       tableName: "session",
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+      },
     }),
+    secret: process.env.sessionSecret,
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
