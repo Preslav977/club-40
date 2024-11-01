@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Club 40</title>
-  </head>
-  <body>
-    <div class="form-container">
-      <header class="flex-header-container">
-        <h2>Become member</h2>
 
-        <p>Enter the correct password to join</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+  <title>Club 40</title>
+</head>
 
-        <p>What is the most used meme in TOP?</p>
+<body>
+  <div class="form-container">
+    <header class="flex-header-container">
+      <h2>Become member</h2>
 
-        <p>On successful guess you will be redirected to main page!</p>
-      </header>
+      <p>Enter the correct password to join</p>
 
-      <form action="/user/become-member" method="POST">
-        <div class="form-content">
-          <label for="membersPassword">Members Passcode</label>
-          <input type="password" name="membersPassword" id="membersPassword" />
-        </div>
-        <div class="form-btn-container">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-  </body>
+      <p>What is the most used meme in TOP?</p>
+
+      <p>On successful guess you will be redirected to main page!</p>
+    </header>
+
+    <form action="/user/become-member" method="POST">
+      <div class="form-content">
+        <label for="memberPassword">Members Password</label>
+        <input type="password" name="memberPassword" id="memberPassword" />
+      </div>
+      <div class="form-btn-container">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>

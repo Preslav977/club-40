@@ -22,6 +22,7 @@
   </header>
 
   <main class="message-container">
+
     <% if (locals.user && locals.user.membership_status === 'member') { %>
     <% messages.forEach(message => { %>
     <div class="message-content">
@@ -30,17 +31,16 @@
       <p><%= message.timestamp %></p>
       <div>
         <p>
-          <%= message.user.first_name %>
+          <%= user.first_name %>
         </p>
-        <p><%= message.user.last_name %></p>
+        <%= user.last_name %>
       </div>
     </div>
     <% }) %>
     <% } else if (locals.user && locals.user.membership_status === 'admin') { %>
     <% messages.forEach(message => { %>
     <div class="message-content">
-      <form action="">
-        <input type="text">
+      <form action="/message/delete/<%= message.id %>">
         <h5><%= message.title %></h5>
         <p><%= message.content %></p>
         <p><%= message.timestamp %></p>
@@ -50,22 +50,17 @@
           </p>
           <p><%= user.last_name %></p>
         </div>
-        <button>Delete Message</button>
+        <button type="submit">Delete Message</button>
       </form>
     </div>
     <% }) %> <% } else { %>
     <% messages.forEach(message => { %>
     <div class="message-content">
       <h5><%= message.title %></h5>
-
       <p><%= message.content %></p>
     </div>
     <% }) %>
-    </div>
-
     <% } %>
-
-
 
   </main>
 </body>

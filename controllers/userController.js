@@ -70,10 +70,9 @@ exports.userBecomeMemberPost = [
 
     console.log(findLoggedUserById);
 
-    if (
-      !findLoggedUserById ||
-      req.body.membersPassword !== process.env.membersPasscode
-    ) {
+    const { memberPassword } = req.body;
+
+    if (!findLoggedUserById || memberPassword !== process.env.memberPassword) {
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
       const updateUserMembershipStatus = await db.postBecomeMember(
@@ -99,15 +98,13 @@ exports.userBecomeAdminPost = [
 
     console.log(findLoggedUserById);
 
-    if (
-      !findLoggedUserById ||
-      req.body.adminPassword !== process.env.adminsPasscode
-    ) {
+    const { adminPassword } = req.body;
+
+    if (!findLoggedUserById || adminPassword !== process.env.adminPassword) {
       res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
       const updateUserMembershipStatus = await db.postBecomeMember(
         "admin",
-        req.user.id,
         req.user.id
       );
 

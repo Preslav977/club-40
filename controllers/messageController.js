@@ -31,3 +31,15 @@ exports.newMessagePost = [
     }
   }),
 ];
+
+exports.newMessageDeletePost = [
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+
+    console.log(id);
+
+    const deleteMessage = await db.postMessageDelete(id);
+
+    res.redirect("/");
+  }),
+];

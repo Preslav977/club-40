@@ -6,6 +6,8 @@ async function getMessagesWithUsers() {
       "SELECT * FROM users JOIN messages ON (users.id=messages.user_id)"
     );
 
+    console.log(rows);
+
     return rows;
   } catch (err) {
     console.error("Error while trying to get all messages", err);

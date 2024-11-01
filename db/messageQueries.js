@@ -14,13 +14,13 @@ async function postMessageCreate(title, content, user_id) {
   }
 }
 
-async function postMessageDelete(user_id, id) {
+async function postMessageDelete(id) {
   try {
-    const query = await pool.query(
-      "DELETE FROM messages WHERE user_id IN (SELECT id FROM users WHERE id = user_id AND membership_status = 'admin')",
-      [user_id, id]
+    await pool.query(
+      // "DELETE FROM messages WHERE id IN (SELECT id FROM users WHERE $1 = id AND membership_status = 'admin')",
+      "DELETE FROM messages WHERE id = $1",
+      [id]
     );
-    return query.rows[0];
   } catch (err) {
     console.error("Error deleting a message, user is not an admin", err);
     throw err;
