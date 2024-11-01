@@ -18,7 +18,9 @@ exports.newMessagePost = [
     const { title, content } = req.body;
 
     if (!errors.isEmpty()) {
-      return res.status(400).send(errors.array());
+      return res.status(400).render("new-message", {
+        errors: errors.array(),
+      });
     } else {
       const createMessage = await db.postMessageCreate(
         title,

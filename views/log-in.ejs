@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Club 40</title>
-  </head>
-  <body>
-    <header class="flex-header-container">
-      <h2>Log In</h2>
-    </header>
 
-    <div class="form-container">
-      <form action="/user/log-in" method="POST">
-        <div class="form-content">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div class="form-content">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <div class="form-btn-container">
-          <button>Log In</button>
-        </div>
-      </form>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+  <title>Club 40</title>
+</head>
+
+<body>
+  <header class="flex-header-container">
+    <h2 class="left-side-color">Log <span class='span-right-side-color'>In</span></h2>
+  </header>
+
+  <div class="form-container">
+    <form action="/user/log-in" method="POST">
+      <div class="form-content">
+        <label class="left-side-color" for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div class="form-content">
+        <label class="left-side-color" for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <div class="form-btn-container">
+        <button class="submit-btn">Log In</button>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>

@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Club 40</title>
-  </head>
-  <body>
-    <header class="flex-header-container">
-      <h2>Sign In</h2>
-    </header>
 
-    <div class="form-container">
-      <form action="/user/sign-up" method="POST">
-        <div class="form-content">
-          <label for="first_name">First Name</label>
-          <input type="text" name="first_name" id="first_name" />
-        </div>
-        <div class="form-content">
-          <label for="last_name">Last Name</label>
-          <input type="text" name="last_name" id="last_name" />
-        </div>
-        <div class="form-content">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div class="form-content">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <div class="form-content">
-          <label for="confirm_password">Confirm Password</label>
-          <input
-            type="password"
-            name="confirm_password"
-            id="confirm_password"
-          />
-        </div>
-        <div class="form-btn-container">
-          <button>Log In</button>
-        </div>
-      </form>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+  <title>Club 40</title>
+</head>
+
+<body>
+  <header class="flex-header-container">
+    <h2 class="left-side-color">Sign <span class="span-right-side-color">Up</span></h2>
+  </header>
+
+  <div class="form-container">
+    <form action="/user/sign-up" method="POST">
+      <div class="form-content">
+        <label class="left-side-color" for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" />
+      </div>
+      <div class="form-content">
+        <label class="left-side-color" for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name" />
+      </div>
+      <div class="form-content">
+        <label class="left-side-color" for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div class="form-content">
+        <label class="left-side-color" for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <div class="form-content">
+        <label class="left-side-color" for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm_password" />
+      </div>
+      <div class="form-btn-container">
+        <button class="submit-btn">Log In</button>
+      </div>
+    </form>
+  </div>
+  <div class="center-errors">
+    <%- include('./partials/error.ejs') %>
+  </div>
+</body>
+
 </html>

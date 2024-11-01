@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Club 40</title>
-  </head>
-  <body>
-    <header class="flex-header-container">
-      <h2>New message</h2>
 
-      <p>Hello, <%= user.first_name %></p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+  <title>Club 40</title>
+</head>
 
-      <p>What is on your mind?</p>
-    </header>
+<body>
 
-    <div class="form-container">
-      <form action="/message/new-message" method="POST">
-        <div class="form-content">
-          <label for="title">Title</label>
-          <input type="text" name="title" id="title" />
-        </div>
-        <div class="form-content">
-          <label for="content">Content</label>
-          <textarea name="content" id="content"></textarea>
-        </div>
-        <div class="form-btn-container">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-  </body>
+  <% if (locals.user) { %>
+  <%- include('./partials/navbar.ejs') %>
+  <% } %>
+
+  <div class="flex-header-container">
+    <h2 class="left-side-color">New message</h2>
+
+    <p class="left-side-color">Hello, <span class="span-right-side-color"><%= user.first_name %></span></p>
+
+    <p class="left-side-color">What is on your <span class="span-right-side-color">mind?</span></p>
+  </div>
+
+  <div class="form-container">
+    <form action="/message/new-message" method="POST">
+      <div class="form-content">
+        <label class="left-side-color" for="title">Title</label>
+        <input type="text" name="title" id="title" />
+      </div>
+      <div class="form-content">
+        <label class="left-side-color" for="content">Content</label>
+        <textarea rows="5" name="content" id="content"></textarea>
+      </div>
+      <div class="form-btn-container">
+        <button class="submit-btn" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="center-errors">
+    <%- include('./partials/error.ejs') %>
+  </div>
+</body>
+
 </html>

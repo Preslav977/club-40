@@ -11,22 +11,22 @@
 <body>
   <%- include('./partials/navbar.ejs') %>
 
-  <header class="flex-header-container">
-    <h1>Special club for 40 years olds</h1>
+  <div class="flex-header-container">
+    <h2 class="left-side-color">Special club for <span class="span-right-side-color">40 years old</span></h2>
 
-    <h2>Everyone can send messages</h2>
+    <h3 class="left-side-color">Everyone can send <span class="span-right-side-color">Messages</span></h3>
 
-    <h3>Non-members can only see the title and contents</h3>
+    <h4 class="left-side-color">Non-members can only see the <span class="span-right-side-color">title and content</span></h4>
 
-    <h4>Only members can see the author and date</h4>
-  </header>
+    <h5 class="left-side-color">Only members can see the <span class="span-right-side-color">author and date</span></h5>
+  </div>
 
   <main class="message-container">
 
     <% if (locals.user && locals.user.membership_status === 'member') { %>
     <% messages.forEach(message => { %>
     <div class="message-content">
-      <h5><%= message.title %></h5>
+      <h6><%= message.title %></h6>
       <p><%= message.content %></p>
       <p><%= message.timestamp %></p>
       <div>
@@ -38,10 +38,10 @@
     </div>
     <% }) %>
     <% } else if (locals.user && locals.user.membership_status === 'admin') { %>
-    <% messages.forEach(message => { %>
     <div class="message-content">
+      <% messages.forEach(message => { %>
       <form action="/message/delete/<%= message.id %>">
-        <h5><%= message.title %></h5>
+        <h6><%= message.title %></h6>
         <p><%= message.content %></p>
         <p><%= message.timestamp %></p>
         <div>
@@ -50,13 +50,13 @@
           </p>
           <p><%= user.last_name %></p>
         </div>
-        <button type="submit">Delete Message</button>
+        <button class="submit-btn" type="submit">Delete Message</button>
       </form>
     </div>
     <% }) %> <% } else { %>
     <% messages.forEach(message => { %>
     <div class="message-content">
-      <h5><%= message.title %></h5>
+      <h6><%= message.title %></h6>
       <p><%= message.content %></p>
     </div>
     <% }) %>

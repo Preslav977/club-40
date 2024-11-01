@@ -26,8 +26,6 @@ exports.userCreatePost = [
       membership_status,
     } = req.body;
 
-    // console.log(first_name, last_name, email, password, confirm_password);
-
     bcrypt.hash(password, 10, async (err, hashedPassword) => {
       if (err) {
         console.log(
@@ -37,7 +35,9 @@ exports.userCreatePost = [
         throw err;
       }
       if (!errors.isEmpty()) {
-        return res.status(400).send(errors.array());
+        return res.status(400).render("sign-up", {
+          errors: errors.array(),
+        });
       } else {
         const createUser = await db.postCreateUser(
           first_name,
@@ -47,8 +47,6 @@ exports.userCreatePost = [
           hashedPassword,
           "non-member"
         );
-
-        console.log(createUser);
 
         res.redirect("/");
       }
@@ -79,7 +77,7 @@ exports.userBecomeMemberPost = [
         req.user.id
       );
 
-      console.log(updateUserMembershipStatus);
+      // console.log(updateUserMembershipStatus);
 
       res.redirect("/");
     }
@@ -97,7 +95,7 @@ exports.userBecomeAdminPost = [
     const { adminPassword } = req.body;
 
     if (!findLoggedUserById || adminPassword !== process.env.adminPassword) {
-      res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+      res.redirect("https://www.youtube.com/watch?v=c4kFLMsRnS4");
     } else {
       const updateUserMembershipStatus = await db.postBecomeMember(
         "admin",
@@ -105,7 +103,7 @@ exports.userBecomeAdminPost = [
         req.user.id
       );
 
-      console.log(updateUserMembershipStatus);
+      // console.log(updateUserMembershipStatus);
 
       res.redirect("/");
     }

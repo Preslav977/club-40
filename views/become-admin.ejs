@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Club 40</title>
-  </head>
-  <body>
-    <div class="form-container">
-      <header class="flex-header-container">
-        <h2>Become admin</h2>
 
-        <p>Enter the correct password to join</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+  <title>Club 40</title>
+</head>
 
-        <p>This time there are no hints!</p>
+<body>
 
-        <p>On successful guess you will be redirected to main page!</p>
-      </header>
+  <% if (locals.user) { %>
+  <%- include('./partials/navbar.ejs') %>
+  <% } %>
 
-      <form action="/user/become-admin" method="POST">
-        <div class="form-content">
-          <label for="adminPassword">Admins Password</label>
-          <input type="password" name="adminPassword" id="adminPassword" />
-        </div>
-        <div class="form-btn-container">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+  <div class="form-container">
+    <div class="flex-header-container">
+      <h2 class="left-side-color">Become <span class="span-right-side-color">admin</span></h2>
+
+      <p class="left-side-color">Enter the correct <span class="span-right-side-color">password</span> to join</p>
+
+      <p class="left-side-color">This time there are <span class="span-right-side-color">no hints!</span></p>
+
+      <p class="left-side-color">On successful guess you will be <span class="span-right-side-color">redirected to main page!</span></p>
     </div>
-  </body>
+
+    <form action="/user/become-admin" method="POST">
+      <div class="form-content">
+        <label class="left-side-color" for="adminPassword">Admin Password</label>
+        <input type="password" name="adminPassword" id="adminPassword" />
+      </div>
+      <div class="form-btn-container">
+        <button class="submit-btn" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>

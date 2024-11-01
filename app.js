@@ -105,7 +105,7 @@ app.post(
   "/user/log-in",
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/",
+    failureRedirect: "/user/log-in",
   })
 );
 
