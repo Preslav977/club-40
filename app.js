@@ -14,7 +14,7 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const bcrypt = require("bcryptjs");
 
-const pool = require("./db/pool");
+const pgPool = require("./db/pool");
 
 const indexRouter = require("./routes/indexRouter");
 
@@ -29,16 +29,16 @@ app.set("view engine", "ejs");
 
 app.use(
   session({
+    secret: process.env.sessionSecret,
+    resave: false,
+    saveUninitialized: false,
     store: new pgSession({
-      pool: pool,
+      pool: pgPool,
       tableName: "session",
       cookie: {
         maxAge: 1000 * 60 * 60 * 24,
       },
     }),
-    secret: process.env.sessionSecret,
-    resave: false,
-    saveUninitialized: false,
   })
 );
 
