@@ -31,7 +31,7 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: process.env.pgSessionSecret,
+    secret: process.env.sessionSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
