@@ -12,14 +12,14 @@ validateMessage = [
     .isLength({ min: 1, max: 50 })
     .escape()
     .withMessage(`Title ${titleLengthErr}`)
-    .matches(/^[a-zA-Z_-]*$/)
+    .matches(/^[a-zA-Z0-9_ ]*$/)
     .withMessage(`Title ${matchErr}`),
   body("content")
     .trim()
     .isLength({ min: 1, max: 255 })
     .escape()
     .withMessage(`Content ${contentLengthErr}`)
-    .matches(/^[a-zA-Z_-]*$/)
+    .matches(/^[a-zA-Z0-9_ ]*$/)
     .withMessage(`Content ${matchErr}`),
 ];
 

@@ -31,24 +31,24 @@
       <p><%= message.timestamp %></p>
       <div>
         <p>
-          <%= user.first_name %>
+          <%= message.first_name %>
         </p>
-        <%= user.last_name %>
+        <%= message.last_name %>
       </div>
     </div>
     <% }) %>
     <% } else if (locals.user && locals.user.membership_status === 'admin') { %>
+    <% messages.forEach(message => { %>
     <div class="message-content">
-      <% messages.forEach(message => { %>
       <form action="/message/delete/<%= message.id %>">
         <h6><%= message.title %></h6>
         <p><%= message.content %></p>
         <p><%= message.timestamp %></p>
         <div>
           <p>
-            <%= user.first_name %>
+            <%= message.first_name %>
           </p>
-          <p><%= user.last_name %></p>
+          <p><%= message.last_name %></p>
         </div>
         <button class="submit-btn" type="submit">Delete Message</button>
       </form>
