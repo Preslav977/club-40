@@ -39,6 +39,8 @@ exports.newMessageDeletePost = [
 
     const deleteMessage = await db.postMessageDelete(id);
 
+    console.log(deleteMessage);
+
     res.redirect("/");
   }),
 ];

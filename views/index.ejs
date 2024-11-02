@@ -40,7 +40,7 @@
     <% } else if (locals.user && locals.user.membership_status === 'admin') { %>
     <% messages.forEach(message => { %>
     <div class="message-content">
-      <form action="/message/delete/<%= message.id %>">
+      <form name="id" id="id" action="/message/delete/<%= message.id %>">
         <h6><%= message.title %></h6>
         <p><%= message.content %></p>
         <p><%= message.timestamp %></p>
