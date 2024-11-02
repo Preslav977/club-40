@@ -3,6 +3,15 @@ require("dotenv").config();
 const { Client } = require("pg");
 
 const SQL = `
+
+DROP TYPE IF EXISTS membership_status CASCADE;
+ 
+DROP TABLE IF EXISTS users CASCADE;
+
+DROP TABLE IF EXISTS messages;
+
+DROP TABLE IF EXISTS session;
+
 CREATE TYPE membership_status AS ENUM ('non-member', 'member', 'admin');
 
 CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, first_name VARCHAR(30), last_name VARCHAR(30), email VARCHAR(30), password VARCHAR(255), confirm_password VARCHAR(255), membership_status membership_status);
